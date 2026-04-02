@@ -1,3 +1,10 @@
+## [1.0.3-dev.1](https://github.com/RookieEnough/De-ReVanced/compare/v1.0.2...v1.0.3-dev.1) (2026-04-02)
+
+
+### Bug Fixes
+
+* release v1.0.3 with Google Recorder fix ([c03c701](https://github.com/RookieEnough/De-ReVanced/commit/c03c701a6ba658afb4f4f2093faca9e6bc91e49c))
+
 ## [1.0.3](https://github.com/RookieEnough/De-ReVanced/compare/v1.0.2...v1.0.3) (2026-04-01)
 
 ### Bug Fixes
