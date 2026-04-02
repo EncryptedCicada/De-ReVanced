@@ -7,9 +7,9 @@ import android.view.View;
 import app.morphe.extension.instagram.utils.dialog.DialogUtils;
 import app.morphe.extension.shared.Utils;
 
-public final class HomeLongPressMenu {
+public final class MorpheSettings {
 
-    private HomeLongPressMenu() {
+    private MorpheSettings() {
     }
 
     public static boolean handleHomeLongPress(

@@ -4,7 +4,7 @@ import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLa
 import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.util.smali.ExternalLabel
-import app.morphe.patches.instagram.core.homeLongPressMenuPatch
+import app.morphe.patches.instagram.core.morpheSettingsPatch
 import app.morphe.util.getFreeRegisterProvider
 
 internal const val AD_GATE_EXTENSION_CLASS_DESCRIPTOR = "Lapp/morphe/extension/instagram/ad/SponsoredContentGate;"
@@ -16,7 +16,7 @@ val hideAdsPatch = bytecodePatch(
     use = true
 ) {
     compatibleWith("com.instagram.android")
-    dependsOn(homeLongPressMenuPatch)
+    dependsOn(morpheSettingsPatch)
 
     execute {
         SponsoredContentFingerprint.method.apply {
