@@ -4,7 +4,7 @@ import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patches.instagram.misc.extension.instagramApplicationOnCreateHook
 import app.morphe.patches.instagram.misc.extension.sharedExtensionPatch
 
-internal const val EXTENSION_CLASS_DESCRIPTOR = "Lapp/morphe/extension/instagram/utils/core/ExtensionContextBridge;"
+internal const val EXTENSION_CLASS_DESCRIPTOR = "Lapp/morphe/extension/shared/Utils;"
 
 @Suppress("unused")
 val initCorePatch = bytecodePatch(

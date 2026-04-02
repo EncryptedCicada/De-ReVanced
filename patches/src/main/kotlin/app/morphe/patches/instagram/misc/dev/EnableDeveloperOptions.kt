@@ -1,10 +1,7 @@
 package app.morphe.patches.instagram.misc.dev
 
 import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
-import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
 import app.morphe.patcher.patch.bytecodePatch
-import app.morphe.patches.instagram.misc.extension.InstagramApplicationOnCreateFingerprint
-import app.morphe.patches.instagram.misc.extension.sharedExtensionPatch
 import app.morphe.util.getMutableMethod
 import app.morphe.util.getReference
 import app.morphe.util.indexOfFirstStringInstructionOrThrow
@@ -14,25 +11,15 @@ import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 private const val USER_SESSION_TYPE = "Lcom/instagram/common/session/UserSession;"
-private const val EXTENSION_CONTEXT_BRIDGE_CLASS_DESCRIPTOR =
-    "Lapp/morphe/extension/instagram/utils/core/ExtensionContextBridge;"
 
 @Suppress("unused")
 val enableDeveloperOptionsPatch = bytecodePatch(
     name = "Enable Developer Options",
     description = "Enable developer options by default.",
-    use = true
 ) {
     compatibleWith("com.instagram.android")
 
-    dependsOn(sharedExtensionPatch)
-
     execute {
-        InstagramApplicationOnCreateFingerprint.method.addInstruction(
-            0,
-            "invoke-static {}, $EXTENSION_CONTEXT_BRIDGE_CLASS_DESCRIPTOR->setDeveloperOptionsPatchEnabled()V"
-        )
-
         val clearNotificationReceiverOnReceiveMethod = ClearNotificationReceiverOnReceiveFingerprint.method
         val notificationDismissedStringIndex =
             clearNotificationReceiverOnReceiveMethod.indexOfFirstStringInstructionOrThrow("NOTIFICATION_DISMISSED")

@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 
 import app.morphe.extension.instagram.ui.UIHookManager;
-import app.morphe.extension.instagram.utils.core.ExtensionContextBridge;
 import app.morphe.extension.instagram.utils.core.InstagramSettings;
 import app.morphe.extension.shared.Utils;
 import app.morphe.extension.shared.ui.CustomDialog;
@@ -30,7 +29,7 @@ public class DialogUtils {
             return;
         }
 
-        ExtensionContextBridge.setContext(context);
+        Utils.setContext(context);
         dismissCurrentDialog();
 
         Pair<Dialog, LinearLayout> pair = CustomDialog.create(
