@@ -2,6 +2,7 @@ package app.morphe.patches.instagram.misc.extension
 
 import app.morphe.patcher.Fingerprint
 import app.morphe.patches.shared.misc.extension.ExtensionHook
+import app.morphe.patches.shared.misc.extension.sharedExtensionPatch
 
 internal object InstagramApplicationOnCreateFingerprint : Fingerprint(
     custom = { method, classDef ->
@@ -11,4 +12,10 @@ internal object InstagramApplicationOnCreateFingerprint : Fingerprint(
 
 internal val instagramApplicationOnCreateHook = ExtensionHook(
     fingerprint = InstagramApplicationOnCreateFingerprint,
+)
+
+val sharedExtensionPatch = sharedExtensionPatch(
+    extensionName = "instagram",
+    isYouTubeOrYouTubeMusic = false,
+    instagramApplicationOnCreateHook,
 )
