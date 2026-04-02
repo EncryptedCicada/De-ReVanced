@@ -16,6 +16,7 @@ private const val USER_SESSION_TYPE = "Lcom/instagram/common/session/UserSession
 val enableDeveloperOptionsPatch = bytecodePatch(
     name = "Enable Developer Options",
     description = "Enable developer options by default.",
+    use = false
 ) {
     compatibleWith("com.instagram.android")
 
