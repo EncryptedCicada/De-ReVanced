@@ -1,0 +1,73 @@
+<!--
+
+    Strings with new lines must be raw strings where they're wrapped in quotes and new lines are not encoded.
+    Raw strings still requires escaping embedded double quotes but escaping embedded single quotes is optional.
+
+    Raw strings are required because Crowdin AI translations regularly gets confused and
+    replace \n with an encoded new line character.
+
+    Bad:
+        <string name="summary_key">First \'item\' text\nSecond \"item\" text</string>
+
+    Good:
+        <string name="summary_key">"First 'item' text
+Second \"item\" text"</string>
+
+-->
+<resources>
+    <!-- misc.settings.settingsPatch -->
+
+    <!-- In languages where "About" is ambiguous, translate this as "About Morphe" (i.e., About this app). -->
+    <string name="morphe_settings_screen_00_about_title">About</string>
+    <string name="morphe_settings_screen_01_ads_title">Ads</string>
+    <string name="morphe_settings_screen_02_ghost_mode_title">Ghost Mode</string>
+    <string name="morphe_settings_screen_03_feed_title">Feed</string>
+    <string name="morphe_settings_screen_04_general_title">General</string>
+    <string name="morphe_settings_screen_05_privacy_title">Privacy</string>
+    <string name="morphe_settings_screen_06_misc_title">Miscellaneous</string>
+    <string name="morphe_settings_screen_07_quality_title">Visual Quality</string>
+
+    <!-- misc.initialization.initializationPatch -->
+    <string name="morphe_restart_first_run">Restart to finish setting up</string>
+
+    <!-- misc.checks.experimentalAppNoticePatch -->
+    <string name="morphe_experimental_app_version_dialog_title">🚨 Experimental Alert 🚨</string>
+    <string name="morphe_experimental_app_version_dialog_message">"You are using an experimental app version of ⚠️ &lt;b>%1$s&lt;/b>
+        &lt;br/>&lt;br/>
+        🔧 Expect quirky app behavior or unidentified bugs as we fine tune the patches for this app version.
+        &lt;br/>&lt;br/>
+        If you want the most trouble free experience, then &lt;b>uninstall&lt;/b> this and patch the recommended app version of ✅ &lt;b>%2$s&lt;/b>"</string>
+    <string name="morphe_experimental_app_version_dialog_confirm">⚠️ I want experimental</string>
+    <string name="morphe_experimental_app_version_dialog_open_homepage">✅ I want stable</string>
+
+    <!-- misc.privacy.sanitizeSharingLinksPatch -->
+    <string name="morphe_sanitize_sharing_links_title">Sanitize sharing links</string>
+    <string name="morphe_sanitize_sharing_links_summary_on">Tracking query parameter is removed from shared links</string>
+    <string name="morphe_sanitize_sharing_links_summary_off">Tracking query parameter is not removed from shared links</string>
+
+    <!-- interaction.ghostModePatch -->
+    <string name="morphe_enable_ghost_mode_title">Enable ghost mode</string>
+    <string name="morphe_disable_typing_status_title">Disable outgoing 'Typing...' status in DMs</string>
+    <string name="morphe_disable_typing_status_summary_on">Not sending 'Typing...' status in DMs</string>
+    <string name="morphe_disable_typing_status_summary_off">Sending 'Typing...' status in DMs</string>
+    <string name="morphe_disable_read_receipts_title">Disable outgoing read receipts in DMs</string>
+    <string name="morphe_enable_ghost_screenshot_title">Disables screenshot detection in DMs</string>
+    <string name="morphe_enable_ghost_screenshot_summary_on">Sender will be notified of screenshot actions</string>
+    <string name="morphe_enable_ghost_screenshot_summary_off">Sender will not be notified of screenshot actions</string>
+
+
+    <!-- ad.hideAdsPatch -->
+    <string name="morphe_enable_ad_block_title">Hide ads</string>
+    <string name="morphe_enable_ad_block_summary_on">Ads hidden</string>
+    <string name="morphe_enable_ad_block_summary_off">Ads shown</string>
+
+    <!-- misc.links.bypassURLRedirectsPatch -->
+<!--    <string name="morphe_bypass_url_redirects_title">Bypass URL redirects</string>-->
+<!--    <string name="morphe_bypass_url_redirects_summary_on">URL redirects are bypassed</string>-->
+<!--    <string name="morphe_bypass_url_redirects_summary_off">URL redirects are not bypassed</string>-->
+
+    <!-- misc.links.openLinksExternallyPatch -->
+<!--    <string name="morphe_external_browser_title">Open links in browser</string>-->
+<!--    <string name="morphe_external_browser_summary_on">Opening links in external browser</string>-->
+<!--    <string name="morphe_external_browser_summary_off">Opening links in in-app browser</string>-->
+</resources>

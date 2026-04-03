@@ -21,13 +21,15 @@ import app.morphe.util.insertFirst
 import app.morphe.util.returnEarly
 import org.w3c.dom.Node
 
+const val MORPHE_SETTINGS_INTENT = "morphe_settings_intent"
+
 private var lightThemeColor : String? = null
 private var darkThemeColor : String? = null
 
 /**
  * Sets the default theme colors used in various Morphe specific settings menus.
- * By default these colors are white and black, but instead can be set to the
- * same color the target app uses for it's own settings.
+ * By default, these colors are white and black, but instead can be set to the
+ * same color the target app uses for its own settings.
  */
 fun overrideThemeColors(lightThemeColorString: String?, darkThemeColorString: String) {
     lightThemeColor = lightThemeColorString
@@ -36,12 +38,11 @@ fun overrideThemeColors(lightThemeColorString: String?, darkThemeColorString: St
 
 private val settingsColorPatch = bytecodePatch {
     finalize {
-        val extensionClassDef = mutableClassDefBy(EXTENSION_CLASS_DESCRIPTOR)
         if (lightThemeColor != null) {
-            ThemeLightColorResourceNameFingerprint.match(extensionClassDef).method.returnEarly(lightThemeColor!!)
+            ThemeLightColorResourceNameFingerprint.method.returnEarly(lightThemeColor!!)
         }
         if (darkThemeColor != null) {
-            ThemeDarkColorResourceNameFingerprint.match(extensionClassDef).method.returnEarly(darkThemeColor!!)
+            ThemeDarkColorResourceNameFingerprint.method.returnEarly(darkThemeColor!!)
         }
     }
 }

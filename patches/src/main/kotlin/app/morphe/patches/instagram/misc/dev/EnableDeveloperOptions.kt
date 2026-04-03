@@ -2,6 +2,8 @@ package app.morphe.patches.instagram.misc.dev
 
 import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
 import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.instagram.misc.extension.sharedExtensionPatch
+import app.morphe.patches.instagram.misc.settings.settingsPatch
 import app.morphe.util.getMutableMethod
 import app.morphe.util.getReference
 import app.morphe.util.indexOfFirstStringInstructionOrThrow
@@ -19,6 +21,10 @@ val enableDeveloperOptionsPatch = bytecodePatch(
     use = false
 ) {
     compatibleWith("com.instagram.android")
+    dependsOn(
+        sharedExtensionPatch,
+        settingsPatch,
+    )
 
     execute {
         val clearNotificationReceiverOnReceiveMethod = ClearNotificationReceiverOnReceiveFingerprint.method

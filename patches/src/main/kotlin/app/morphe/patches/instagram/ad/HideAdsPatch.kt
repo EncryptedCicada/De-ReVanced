@@ -4,10 +4,13 @@ import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLa
 import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.util.smali.ExternalLabel
-import app.morphe.patches.instagram.core.morpheSettingsPatch
+import app.morphe.patches.instagram.misc.extension.sharedExtensionPatch
+import app.morphe.patches.instagram.misc.settings.settingsPatch
 import app.morphe.util.getFreeRegisterProvider
+import app.morphe.util.setExtensionIsPatchIncluded
 
-internal const val AD_GATE_EXTENSION_CLASS_DESCRIPTOR = "Lapp/morphe/extension/instagram/ad/SponsoredContentGate;"
+private const val EXTENSION_CLASS_DESCRIPTOR =
+    "Lapp/morphe/extension/instagram/patches/HideAdsPatch;"
 
 @Suppress("unused")
 val hideAdsPatch = bytecodePatch(
@@ -16,7 +19,10 @@ val hideAdsPatch = bytecodePatch(
     use = true
 ) {
     compatibleWith("com.instagram.android")
-    dependsOn(morpheSettingsPatch)
+    dependsOn(
+        sharedExtensionPatch,
+        settingsPatch,
+    )
 
     execute {
         SponsoredContentFingerprint.method.apply {
@@ -28,7 +34,7 @@ val hideAdsPatch = bytecodePatch(
             addInstructionsWithLabels(
                 0,
                 """
-                    invoke-static {}, $AD_GATE_EXTENSION_CLASS_DESCRIPTOR->shouldHideSponsoredContent()Z
+                    invoke-static {}, $EXTENSION_CLASS_DESCRIPTOR->hideAds()Z
                     move-result v$shouldHideRegister
                     if-eqz v$shouldHideRegister, :morphe_continue
                     const/4 v$shouldHideRegister, 0x0
@@ -37,5 +43,7 @@ val hideAdsPatch = bytecodePatch(
                 ExternalLabel("morphe_continue", getInstruction(0))
             )
         }
+
+        setExtensionIsPatchIncluded(EXTENSION_CLASS_DESCRIPTOR)
     }
 }
